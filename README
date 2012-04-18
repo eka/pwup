@@ -1,0 +1,10 @@
+Pending Documentation.
+
+NOTE:
+
+1. you need an account in Picasa Web
+2. currently supported compressed types are .rar, .zip
+
+To test with the client:
+
+usage: ruby pwupcli.rb -f <path to compressed file> -a 'Album Name' -e <email> -p <password>

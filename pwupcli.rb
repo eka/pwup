@@ -1,0 +1,34 @@
+$:.unshift File.join(File.dirname(__FILE__))
+require 'optparse'
+require 'ostruct'
+
+require 'pwup'
+
+$options = OpenStruct.new
+$options.files = []
+$options.album = nil
+$options.email = nil
+$options.password = nil
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: pwup.rb [$options]"
+
+  opts.on("-f", "--file=MANDATORY", "File to process") do |f|
+    $options.files << f
+  end
+
+  opts.on("-a", "--album=MANDATORY", "Album name") do |a|
+    $options.album = a
+  end
+
+  opts.on("-e", "--email=MANDATORY", "email") do |a|
+    $options.email = a
+  end
+
+  opts.on("-p", "--album=MANDATORY", "password") do |a|
+    $options.password = a
+  end
+end.parse!
+
+pwup = PwUp::PwUp.new($options.email, $options.password)
+pwup.process!($options.files, $options.album)
