@@ -55,7 +55,6 @@ module PwUp
 
     private
     def process?(file)
-      require 'debugger'; debugger
       ext = File.extname(file)
       COMMANDS.include? ext.downcase and File.exists? file
     end
