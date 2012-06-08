@@ -33,7 +33,7 @@ module PwUp
         unpack file, target_dir
       end
       # filter only the images
-      images = Dir.foreach(target_dir).to_a.select {|f| IMAGE_TYPES.include? File.extname(f).downcase}
+      images = Dir.foreach(target_dir).select {|f| IMAGE_TYPES.include? File.extname(f).downcase}
       puts "Found #{images.length} images"
       # exit if no images where found
       return if images.length == 0
