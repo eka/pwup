@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    =
     'https://github.com/eka/pwup'
   s.executables << 'pwupcli'
+  s.add_dependency("xml-simple")
 end
