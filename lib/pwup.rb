@@ -1,3 +1,4 @@
+require 'date'
 require 'tmpdir'
 require 'picasa'
 
@@ -6,8 +7,8 @@ module PwUp
   class PwUp
     # FILE_TYPES = %w[.rar .zip]
     COMMANDS = {
-      ".rar" => "unrar x %<file>s %<target_dir>s",
-      ".zip" => "unzip %<file>s -d %<target_dir>s",
+      ".rar" => "unrar x -ep \"%<file>s\" %<target_dir>s",
+      ".zip" => "unzip -j \"%<file>s\" -d %<target_dir>s",
     }
     IMAGE_TYPES = %w[.jpg .png .gif]
 
@@ -40,7 +41,7 @@ module PwUp
       # create album
       album = @picasa.create_album(:title => album_name,
       :summary => album_name,
-      :location => "", :keywords => "")
+      :location => "", :keywords => "", :timestamp => DateTime.now.to_time.to_i)
       puts "album name = #{album.name}"
       images.each do |image|
         file_name = File.join(target_dir, image)
