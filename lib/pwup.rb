@@ -1,4 +1,3 @@
-require 'date'
 require 'tmpdir'
 require 'picasa'
 
@@ -41,7 +40,7 @@ module PwUp
       # create album
       album = @picasa.create_album(:title => album_name,
       :summary => album_name,
-      :location => "", :keywords => "", :timestamp => DateTime.now.to_time.to_i)
+      :location => "", :keywords => "", :timestamp => Time.now.to_i)
       puts "album name = #{album.name}"
       images.each do |image|
         file_name = File.join(target_dir, image)
