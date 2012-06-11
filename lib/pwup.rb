@@ -46,8 +46,10 @@ module PwUp
         file_name = File.join(target_dir, image)
         puts "Reading #{file_name}"
         image_data = open(file_name, "rb").read
-        photo = @picasa.post_photo(image_data, :album => album.name,
-        :summary => file_name, :title => file_name)
+        @picasa.post_photo(
+          image_data, :album => album.name,
+          :summary => file_name, :title => file_name
+          )
         puts "photo #{file_name} uploaded to #{album.name}"
       end
     end
