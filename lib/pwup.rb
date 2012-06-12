@@ -1,4 +1,6 @@
+require 'pathname'
 require 'tmpdir'
+
 require 'picasa'
 
 module PwUp
@@ -9,7 +11,7 @@ module PwUp
       ".rar" => "unrar x -ep \"%<file>s\" %<target_dir>s",
       ".zip" => "unzip -j \"%<file>s\" -d %<target_dir>s",
     }
-    IMAGE_TYPES = %w[.jpg .png .gif]
+    IMAGE_TYPES = %w[*.jpg *.png *.gif]
 
     def initialize(email, password)
       @email = email
@@ -23,7 +25,7 @@ module PwUp
       target_dir = Dir.mktmpdir('pwup', '/tmp')
       # these are the compressed ones
       files.each do |file|
-        if not process? file
+        unless process? file
           puts "Skipping, can't process file #{file}"
           next
         end
@@ -32,7 +34,8 @@ module PwUp
         unpack file, target_dir
       end
       # filter only the images
-      images = Dir.foreach(target_dir).select {|f| IMAGE_TYPES.include? File.extname(f).downcase}
+      p1 = Pathname.new target_dir
+      images = Dir.glob(IMAGE_TYPES.map {|i| p1 + "**" + i} ,File::FNM_CASEFOLD)
       puts "Found #{images.length} images"
       # exit if no images where found
       return if images.length == 0
@@ -57,13 +60,20 @@ module PwUp
     private
     def process?(file)
       ext = File.extname(file)
-      COMMANDS.include? ext.downcase and File.exists? file
+      COMMANDS.include? ext.downcase and File.exists? file or File.directory? file
     end
 
     def unpack(file, target_dir)
-      ext = File.extname(file)
-      command = COMMANDS[ext] % {:file=>file, :target_dir=>target_dir}
-      system(command)
+      # if it's a dir, copy all content to the target_dir
+      if File.directory? file
+        p1 = Pathname.new file
+        images = Dir.glob(IMAGE_TYPES.map {|i| p1 + "**" + i} ,File::FNM_CASEFOLD)
+        FileUtils.cp(images, target_dir)
+      else
+        ext = File.extname(file)
+        command = COMMANDS[ext] % {:file=>file, :target_dir=>target_dir}
+        system(command)
+      end
     end
   end
 end
