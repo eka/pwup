@@ -41,9 +41,13 @@ module PwUp
       return if images.length == 0
       puts "Uploading to #{album_name}"
       # create album
-      album = @picasa.create_album(:title => album_name,
-      :summary => album_name,
-      :location => "", :keywords => "", :timestamp => Time.now.to_i)
+      album = @picasa.create_album(
+        title: album_name,
+        summary: album_name,
+        location: "",
+        keywords: "",
+        timestamp: Time.now.to_i
+        )
       puts "album name = #{album.name}"
       images.each do |image|
         file_name = File.join(target_dir, image)
