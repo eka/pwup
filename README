@@ -10,4 +10,12 @@ NOTE:
 
 To test with the client:
 
-usage: ruby pwupcli.rb -f <path to compressed file> -a 'Album Name' -e <email> -p <password>
+usage: ruby pwupcli.rb -f <path to compressed file or directory> -a 'Album Name' -e <email> -p <password>
+
+Api Usage
+=========
+
+pwup = PwUp("some@email.com", "somepass")
+pwup.process! "/path/to/compressed.zip", "Album name"
+pwup.process! "/path", "Album name"
+pwup.process! ["/path", "/path/to/compressed.rar"], "Album name"

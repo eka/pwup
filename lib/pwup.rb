@@ -23,7 +23,10 @@ module PwUp
     def process!(files, album_name)
       # create a tmp folder
       target_dir = Dir.mktmpdir('pwup', '/tmp')
-      # these are the compressed ones
+      # these are the compressed ones or directories
+      unless files.respond_to? :each
+        files = [files]
+      end
       files.each do |file|
         unless process? file
           puts "Skipping, can't process file #{file}"
