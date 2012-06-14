@@ -53,7 +53,7 @@ module PwUp
         )
       puts "album name = #{album.name}"
       images.each do |image|
-        file_name = File.join(target_dir, image)
+        file_name = image
         puts "Reading #{file_name}"
         image_data = open(file_name, "rb").read
         @picasa.post_photo(

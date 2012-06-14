@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'pwup'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2012-06-08'
   s.summary     = "Picasa Web Uploader"
   s.description = "A simple picasa web uploador utility class that support compressed archives (.rar, .zip)"
