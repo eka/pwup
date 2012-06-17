@@ -96,7 +96,7 @@ module Picasa
       access = options[:access].nil? ? "public" : options[:access]
       commentable = options[:commentable].nil? ? "true" : options[:commentable].to_s
       keywords = options[:keywords].nil? ? "" : options[:keywords]
-      time_i = (Time.now).to_i
+      time_i = (Time.now).to_i * 1000
 
       createAlbumRequestXml = "<entry xmlns='http://www.w3.org/2005/Atom'
                     xmlns:media='http://search.yahoo.com/mrss/'

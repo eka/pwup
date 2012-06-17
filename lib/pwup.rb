@@ -49,7 +49,6 @@ module PwUp
         summary: album_name,
         location: "",
         keywords: "",
-        timestamp: Time.now.to_i
         )
       puts "album name = #{album.name}"
       images.each do |image|
@@ -57,8 +56,10 @@ module PwUp
         puts "Reading #{file_name}"
         image_data = open(file_name, "rb").read
         @picasa.post_photo(
-          image_data, :album => album.name,
-          :summary => file_name, :title => file_name
+          image_data,
+          album: album.name,
+          summary: file_name,
+          title: file_name
           )
         puts "photo #{file_name} uploaded to #{album.name}"
       end

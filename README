@@ -1,12 +1,13 @@
-Picasa Web Uploader
+Picasaweb Uploader
 ===================
 
 Pending Documentation.
 
 NOTE:
 
-1. you need an account in Picasa Web
+1. you need an account in Picasaweb
 2. currently supported compressed types are .rar, .zip
+3. you can also pass a directory instead of file
 
 To test with the client:
 
