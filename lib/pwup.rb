@@ -62,8 +62,8 @@ module PwUp
           title: file_name
           )
         puts "photo #{file_name} uploaded to #{album.name}"
-        return album
       end
+      return album
     end
 
     private

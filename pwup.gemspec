@@ -2,7 +2,7 @@ require "date"
 
 Gem::Specification.new do |s|
   s.name        = 'pwup'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
   s.date        = Date.today.to_s
   s.summary     = "Picasaweb Uploader"
   s.description = "A simple picasaweb uploader utility class that support compressed archives (.rar, .zip)"

@@ -26,7 +26,7 @@ OptionParser.new do |opts|
     $options.email = a
   end
 
-  opts.on("-p", "--album=MANDATORY", "password") do |a|
+  opts.on("-p", "--password=MANDATORY", "password") do |a|
     $options.password = a
   end
 end.parse!
