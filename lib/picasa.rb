@@ -2,6 +2,9 @@
 # www.code71.com
 # http://code.google.com/p/picasaonrails/
 
+# TODO: use gem 'builder' to generate xml
+# TODO: fix ifs, etc...
+
 require 'rubygems'
 require 'cgi'
 require 'net/https'

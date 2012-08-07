@@ -51,9 +51,8 @@ module PwUp
         keywords: "",
         )
       puts "album name = #{album.name}"
-      images.each do |image|
+      images.each_with_index do |image, index|
         file_name = image
-        puts "Reading #{file_name}"
         image_data = open(file_name, "rb").read
         @picasa.post_photo(
           image_data,
@@ -61,7 +60,7 @@ module PwUp
           summary: file_name,
           title: file_name
           )
-        puts "photo #{file_name} uploaded to #{album.name}"
+        puts "photo #{file_name} uploaded to #{album.name} - #{index+1} of #{images.length}"
       end
       return album
     end
